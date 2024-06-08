@@ -20,8 +20,8 @@ gib() {
     done
 }
 
-# echo "(box :class \"workspaces\" :orientation \"v\" :space-evenly false :spacing \"0\" $(gib))"
+# echo "(box :class \"workspaces\" :orientation \"h\" :space-evenly false :spacing \"0\" $(gib))"
 
 xprop -spy -root _NET_CURRENT_DESKTOP | while read -r; do
-    eww update workspace_data="(box :class \"workspaces\" :orientation \"v\" :space-evenly false :spacing \"0\" $(gib))"
+    eww update workspace_data="(box :class \"workspaces\" :orientation \"h\" :space-evenly false :spacing \"0\" $(gib))"
 done

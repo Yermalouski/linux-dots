@@ -52,7 +52,7 @@ scale trough {
 .metric {
 	padding: 0px;
 
-	min-height: 21px;
+	min-height: 20px;
 	
 	background-color: $black;
 	border-radius: $radius;
@@ -71,16 +71,16 @@ scale trough {
 }
 
 //
-// TOP WIDGETS
+// LEFT WIDGETS
 //
 
 // launcher
 .launcher-icon {
-	padding: 6px 6px 6px 4px;
+	padding: 4px 6px 6px 6px;
 
 	color: $bg;
 	background-color: $cardboard;
-	border-left: 2px solid $cardboard;
+	border-top: 2px solid $cardboard;
 
 	font-family: $icon-font;
 	font-size: $icon-size;
@@ -166,29 +166,29 @@ scale trough {
 //
 
 .time-clock {
-	padding: 4px;
 	color: $fg;
-	background-color: $bg;
+	background-color: $black;
+	padding: 0 4px 0 4px;
 }
 
 .date-clock {
-	padding: 4px;
 	color: $fg;
-	background-color: $bg;
+	background-color: $black;
+	padding: 0 4px 0 4px;
 }
 
 .hour {
-	padding-bottom: 2px;
 	color: $green;
+	padding: 2px;
 }
 
 .day {
-	padding-bottom: 2px;
 	color: $green;
+	padding: 2px;
 }
 
 //
-// BOTTOM (sus) WIDGETS
+// RIGHT (sus) WIDGETS
 //
 
 .lamp-icon {
@@ -313,12 +313,12 @@ scale trough {
 }
 
 .poweroff-icon {
-	padding: 6px 6px 6px 4px;
+	padding: 4px 6px 6px 6px;
 
 	color: $bg;
 	background-color: $red;
 
-	border-left: 2px solid $red;
+	border-top: 2px solid $red;
 
 	font-family: $icon-font;
 	font-size: $icon-size;
