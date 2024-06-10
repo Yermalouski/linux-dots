@@ -4,8 +4,8 @@ from requests import get, post
 import sys
 import dotenv
 
-url = dotenv.get_key('/home/fluffy/.config/eww/scripts/.env', 'HA_URL')
-bearer = dotenv.get_key('/home/fluffy/.config/eww/scripts/.env', 'HA_API')
+url = dotenv.get_key('/home/yermalouski/.config/eww/scripts/.env', 'HA_URL')
+bearer = dotenv.get_key('/home/yermalouski/.config/eww/scripts/.env', 'HA_API')
 
 def getStates(device):
     headers = {

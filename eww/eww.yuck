@@ -22,7 +22,7 @@
 			:class "end"
 			(end))))
 
-;; top layout
+;; left layout
 (defwidget start []
 	(box :orientation "h"
 		:space-evenly false
@@ -36,7 +36,7 @@
 		:spacing "8"
 		(clock)(date)))
 
-;; bottom layout
+;; right layout
 (defwidget end []
 	(box :orientation "h"
 		:space-evenly false
@@ -61,24 +61,25 @@
 
 (defwidget music-playpause []
 	(button :class "playpause-icon"
-		:onclick "playerctl play-pause -i firefox"
+		:onclick "playerctl play-pause -i chromium"
 		:tooltip "Toggle track"
 		{music-status == "Playing" ? "" : ""}))
 
-(defpoll music-status :interval "1s" "playerctl -p %any -i firefox status")
+(defpoll music-status :interval "1s" "playerctl -p %any -i chromium status")
 
 (defwidget music-skip []
 	(button :class "skip-icon"
-		:onclick "playerctl next -i firefox"
+		:onclick "playerctl next -i chromium"
 		:tooltip "Skip track"
 		""))
 
 (defwidget music-prev []
 	(button :class "prev-icon"
-		:onclick "playerctl previous -i firefox"
+		:onclick "playerctl previous -i chromium"
 		:tooltip "Previous track"
 		""))
 
+;; workspaces
 (defwidget workspaces [] (literal :content "${workspace_data}"))
 (defvar workspace_data "")
 
