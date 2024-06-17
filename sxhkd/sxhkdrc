@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------
 
 # Terminal
-super + t
+super + Return
 	alacritty
 
 # Menu
@@ -15,7 +15,7 @@ super + b
 	chromium
 
 # Spotify
-super + s
+super + m
 	spotify
 
 # Nautilus
@@ -40,15 +40,17 @@ super + shift + Escape
 super + q
 	bspc node -{c,k}
 
-# Fullscreen
+# Fulscreen Window
 super + f
-	bspc desktop -l next
+    bspc desktop -l next
 
-# Toggle Tiled, Floating, Fullscreen
-super + shift + {t,s,f}
-	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+# Gapless Fullscreen Window
+super + shift + f
+	bspc node -t \~fullscreen
 
-
+# Floating Window
+super + p
+	bspc node -t floating
 
 # -----------------------------------------------------------------
 # ----------------------------- FOCUS -----------------------------
