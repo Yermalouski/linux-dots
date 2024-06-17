@@ -40,7 +40,7 @@ super + shift + Escape
 super + q
 	bspc node -{c,k}
 
-# Fulscreen Window
+# Fullscreen Window
 super + f
     bspc desktop -l next
 
