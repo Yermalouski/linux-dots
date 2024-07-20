@@ -15,16 +15,38 @@ super + b
 	chromium
 
 # Spotify
-super + m
+super + s
 	spotify
 
 # Nautilus
 super + n
 	nautilus
 
+# Visual Studio Code
+super + v
+	code
+
 # SXHKD Reload
 super + Escape
 	pkill -USR1 -x sxhkd
+
+
+
+# ----------------------------------------------------------------
+# ----------------------------- AUDIO ----------------------------
+# ----------------------------------------------------------------
+
+#Raise Volume
+XF86AudioRaiseVolume
+    pactl set-sink-volume 0 +5%
+
+#lower Volume
+XF86AudioLowerVolume
+    pactl set-sink-volume 0 -5%
+
+#Mute Volume
+XF86AudioMute
+    pactl set-sink-mute 0 toggle
 
 
 
@@ -61,7 +83,7 @@ super + Tab
 	bspc node --focus next.local && bspc node -s biggest.window
 
 # Shift Window Focus Only
-super + alt + Tab
+super + shift + Tab
 	bspc node -f {next,prev}.local.!hidden.window
 
 # Move Focused Window Left, Down, Up, Right

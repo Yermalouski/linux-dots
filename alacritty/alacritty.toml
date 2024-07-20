@@ -11,10 +11,4 @@ decorations = "Full"
 decorations_theme_variant = "Light" # "Dark"
 
 [font]
-
-normal.family = "Cascadia Code PL"
-bold.family = "Cascadia Code PL"
-italic.family = "Cascadia Code PL"
-bold_italic.family = "Cascadia Code PL"
-
-size = 12
+size = 14

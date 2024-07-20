@@ -6,7 +6,6 @@ $black: #171717;
 $dark: #1a1a1a;
 $gray: #424242;
 $white: #e8e3e3;
-$cardboard: #b7a997;
 $red: #b66467;
 $yellow: #d9bc8c;
 $green: #8c977d;
@@ -60,7 +59,7 @@ scale trough {
 
 // icons
 @mixin icon {
-	padding: 9px 6px;
+	padding: 8px 10px;
 
 	font-family: $icon-font;
 	font-size: $icon-size;
@@ -79,8 +78,8 @@ scale trough {
 	padding: 4px 6px 6px 6px;
 
 	color: $bg;
-	background-color: $cardboard;
-	border-top: 2px solid $cardboard;
+	background-color: $white;
+	border-top: 2px solid $white;
 
 	font-family: $icon-font;
 	font-size: $icon-size;
@@ -88,7 +87,7 @@ scale trough {
 	transition: all 0.2s;
 
 	&:hover {
-		color: $cardboard;
+		color: $white;
 		background-color: $black;
 	}
 }
@@ -106,15 +105,15 @@ scale trough {
 
 	&:hover {
 		background-color: $black;
-		color: $yellow;
+		color: $white;
 	}
 }
 .music-playing {
 	padding: 9px 6px;
 
-	background-color: $yellow;
+	background-color: $white;
 	color: $bg;
-	border-left: 2px solid $yellow;
+	border-left: 2px solid $white;
 
 	&:hover {
 		background-color: $black;
@@ -125,7 +124,7 @@ scale trough {
 	@include icon;
 
 	&:hover {
-		color: $yellow;
+		color: $white;
 	}
 }
 
@@ -133,40 +132,44 @@ scale trough {
 	@include icon;
 
 	&:hover {
-		color: $yellow;
+		color: $white;
 	}
 }
 
-.workspaces {
-	padding: 7px 11px;
-
+.workspace {
 	background-color: $black;
 	border-radius: $radius;
-}
+	}
 
-.workspace {
-	margin: 3px 0;
+	/* Unoccupied */
+	.ws, .ws1, .ws2, .ws3, .ws4,
+	.ws11, .ws22, .ws33, .ws44 {
+		@include icon;
+		&:hover {
+			color: $cyan;
+		}
+	}
+
+	.ws {
+		color: $gray;
+	}
 	
-	min-height: 11px;
-
-	background-color: $bg;
-	border-radius: $radius;
-}
-.workspace-occupied {
-	background-color: $gray;
-}
-.workspace-focused {
-	// min-height: 17px;
-	background-color: $fg;
-}
-
+	/* Occupied */
+	.ws1, .ws2, .ws3, .ws4 {
+	  color: $white;
+	}
+	
+	/* Focused */
+	._ws11, .ws22, .ws33, .ws44 {
+	  color: $white;
+	}
 
 //
 // CENTER WIDGETS
 //
 
 .time-clock {
-	color: $fg;
+	color: $white;
 	background-color: $black;
 	padding: 0 4px 0 4px;
 }
@@ -178,50 +181,18 @@ scale trough {
 }
 
 .hour {
-	color: $green;
+	color: $white;
 	padding: 2px;
 }
 
 .day {
-	color: $green;
+	color: $white;
 	padding: 2px;
 }
 
 //
 // RIGHT (sus) WIDGETS
 //
-
-.lamp-icon {
-	@include icon;
-
-	&:hover {
-		color: $yellow;
-	}
-}
-.lamp-slider trough highlight {
-	background-color: $yellow;
-	border-radius: $radius;
-}
-
-.obs-icon {
-	@include icon;
-	color: $fg;
-
-	&:hover {
-		color: $red;
-	}
-}
-.obs-recording {
-	color: $red;
-}
-
-.screenshot-icon {
-	@include icon;
-
-	&:hover {
-		color: $magenta;
-	}
-}
 
 .memory-icon {
 	@include icon;
@@ -238,53 +209,20 @@ scale trough {
 	}
 }
 
-.light-icon {
-	@include icon;
-	color: $gray;
-
-	&:hover {
-		color: $yellow;
-	}
-}
-.light-on {
-	color: $fg;
-}
-
 .bluetooth-icon {
 	@include icon;
 	color: $gray;
 
 	&:hover {
-		color: $blue;
+		color: $cyan;
 	}
 }
+
 .bluetooth-on {
-	color: $fg;
+	color: $red;
 }
 .bluetooth-connected {
-	padding: 9px 6px 9px 4px;
-
-	background-color: $blue;
-	color: $bg;
-	border-left: 2px solid $blue;
-	border-radius: $radius;
-
-	&:hover {
-		color: $blue;
-		background-color: $black;
-	}
-}
-
-.vpn-icon {
-	@include icon;
-	color: $gray;
-
-	&:hover {
-		color: $green;
-	}
-}
-.vpn-on {
-	color: $fg;
+	color: $white;
 }
 
 .mic-icon {
@@ -292,11 +230,11 @@ scale trough {
 	color: $gray;
 
 	&:hover {
-		color: $yellow;
+		color: $cyan;
 	}
 }
 .mic-on {
-	color: $fg;
+	color: $white;
 }
 
 
@@ -304,11 +242,11 @@ scale trough {
 	@include icon;
 
 	&:hover {
-		color: $green;
+		color: $cyan;
 	}
 }
 .volume-slider trough highlight {
-	background-color: $green;
+	background-color: $white;
 	border-radius: $radius;
 }
 
@@ -316,16 +254,16 @@ scale trough {
 	padding: 4px 6px 6px 6px;
 
 	color: $bg;
-	background-color: $red;
+	background-color: $white;
 
-	border-top: 2px solid $red;
+	border-top: 2px solid $white;
 
 	font-family: $icon-font;
 	font-size: $icon-size;
 	transition: all 0.2s;
 
 	&:hover {
-		color: $red;
+		color: $white;
 		background-color: $black;
 	}
 }
