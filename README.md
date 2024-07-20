@@ -1,5 +1,3 @@
 # Linux-Config
 
-<div align="center">
-    <img src="preview.png" alt="screenshot">
-</div>
+<img src="preview.png" alt="screenshot">
