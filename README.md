@@ -1,6 +1,6 @@
 # Linux Configuration
 
-My current setup with Arch, BSPWM and EWW.
+My current desktop setup.
 
 <img src="preview.png" alt="screenshot">
 
