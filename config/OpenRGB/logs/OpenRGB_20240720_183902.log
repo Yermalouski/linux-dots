@@ -1,0 +1,44 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20240720_183902
+====================================================================================================
+
+0     |Info:    Found file: White.orp attempting to validate header
+0     |Info:    Valid v4 profile found for White
+1004  |Info:    ------------------------------------------------------
+1004  |Info:    |               Start device detection               |
+1004  |Info:    ------------------------------------------------------
+1004  |Info:    Initializing HID interfaces: Success
+1009  |Info:    ------------------------------------------------------
+1009  |Info:    |             Detecting I2C interfaces               |
+1009  |Info:    ------------------------------------------------------
+1009  |Info:    Registering I2C interface: /dev/i2c-3 Device 10DE:1AED Subsystem: 1462:C75A
+1009  |Info:    Registering I2C interface: /dev/i2c-1 Device 1022:790B Subsystem: 1462:7B89
+1009  |Info:    Registering I2C interface: /dev/i2c-6 Device 10DE:21C4 Subsystem: 1462:C75A
+1009  |Info:    Registering I2C interface: /dev/i2c-4 Device 10DE:21C4 Subsystem: 1462:C75A
+1009  |Info:    Registering I2C interface: /dev/i2c-2 Device 1022:790B Subsystem: 1462:7B89
+1009  |Info:    Registering I2C interface: /dev/i2c-0 Device 1022:790B Subsystem: 1462:7B89
+1009  |Info:    Registering I2C interface: /dev/i2c-7 Device 10DE:21C4 Subsystem: 1462:C75A
+1009  |Info:    Registering I2C interface: /dev/i2c-5 Device 10DE:21C4 Subsystem: 1462:C75A
+1009  |Info:    ------------------------------------------------------
+1009  |Info:    |               Detecting I2C devices                |
+1009  |Info:    ------------------------------------------------------
+1044  |Info:    [HyperX Fury RGB] Registering RGB controller
+2062  |Info:    ------------------------------------------------------
+2062  |Info:    |               Detecting I2C PCI devices            |
+2062  |Info:    ------------------------------------------------------
+2063  |Info:    ------------------------------------------------------
+2063  |Info:    |               Detecting HID devices                |
+2063  |Info:    ------------------------------------------------------
+2064  |Info:    [Keychron Gaming Keyboard 1] Registering RGB controller
+2064  |Info:    ------------------------------------------------------
+2064  |Info:    |            Detecting libusb HID devices            |
+2064  |Info:    ------------------------------------------------------
+2175  |Info:    ------------------------------------------------------
+2175  |Info:    |              Detecting other devices               |
+2175  |Info:    ------------------------------------------------------
+2182  |Info:    ------------------------------------------------------
+2182  |Info:    |                Detection completed                 |
+2182  |Info:    ------------------------------------------------------
+2182  |Info:    Profile loading: Succeeded for HyperX Fury RGB @ I2C: /dev/i2c-0, address 0x27
+2182  |Info:    Profile loading: Succeeded for Keychron Gaming Keyboard 1 @ HID: /dev/hidraw4

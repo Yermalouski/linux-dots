@@ -1,0 +1,71 @@
+    OpenRGB v0.9
+    Commit:  from 
+    Launched: 20240609_220434
+====================================================================================================
+
+1003  |Info:    ------------------------------------------------------
+1003  |Info:    |               Start device detection               |
+1003  |Info:    ------------------------------------------------------
+1003  |Info:    Initializing HID interfaces: Success
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    |             Detecting I2C interfaces               |
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    Registering I2C interface: /dev/i2c-3 Device 1022:790B Subsystem: 1462:7B89
+1012  |Info:    Registering I2C interface: /dev/i2c-6 Device 10DE:21C4 Subsystem: 1462:C75A
+1012  |Info:    Registering I2C interface: /dev/i2c-2 Device 1022:790B Subsystem: 1462:7B89
+1012  |Info:    Registering I2C interface: /dev/i2c-7 Device 10DE:21C4 Subsystem: 1462:C75A
+1012  |Info:    Registering I2C interface: /dev/i2c-5 Device 10DE:21C4 Subsystem: 1462:C75A
+1012  |Info:    ------------------------------------------------------
+1012  |Info:    |               Detecting I2C devices                |
+1012  |Info:    ------------------------------------------------------
+1568  |Info:    ------------------------------------------------------
+1568  |Info:    |               Detecting I2C PCI devices            |
+1568  |Info:    ------------------------------------------------------
+1570  |Info:    ------------------------------------------------------
+1570  |Info:    |               Detecting HID devices                |
+1570  |Info:    ------------------------------------------------------
+1571  |Info:    [Keychron Gaming Keyboard 1] Registering RGB controller
+2636  |Info:    [Corsair Harpoon RGB PRO] Registering RGB controller
+2636  |Info:    ------------------------------------------------------
+2636  |Info:    |            Detecting libusb HID devices            |
+2636  |Info:    ------------------------------------------------------
+2755  |Info:    ------------------------------------------------------
+2755  |Info:    |              Detecting other devices               |
+2755  |Info:    ------------------------------------------------------
+2762  |Info:    ------------------------------------------------------
+2762  |Info:    |                Detection completed                 |
+2762  |Info:    ------------------------------------------------------
+2762  |Dialog:  <h2>WARNING:</h2><p>One or more I2C/SMBus interfaces failed to initialize.</p><p>RGB DRAM modules and some motherboards' onboard RGB lighting will not be available without I2C/SMBus.</p><p>On Linux, this is usually because the i2c-dev module is not loaded.  You must load the i2c-dev module along with the correct i2c driver for your motherboard.  This is usually i2c-piix4 for AMD systems and i2c-i801 for Intel systems.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p>
+166128|Info:    ------------------------------------------------------
+166128|Info:    |               Start device detection               |
+166128|Info:    ------------------------------------------------------
+166129|Info:    Initializing HID interfaces: Success
+166136|Info:    ------------------------------------------------------
+166136|Info:    |             Detecting I2C interfaces               |
+166136|Info:    ------------------------------------------------------
+166136|Info:    Registering I2C interface: /dev/i2c-3 Device 1022:790B Subsystem: 1462:7B89
+166136|Info:    Registering I2C interface: /dev/i2c-6 Device 10DE:21C4 Subsystem: 1462:C75A
+166136|Info:    Registering I2C interface: /dev/i2c-2 Device 1022:790B Subsystem: 1462:7B89
+166137|Info:    Registering I2C interface: /dev/i2c-7 Device 10DE:21C4 Subsystem: 1462:C75A
+166137|Info:    Registering I2C interface: /dev/i2c-5 Device 10DE:21C4 Subsystem: 1462:C75A
+166137|Info:    ------------------------------------------------------
+166137|Info:    |               Detecting I2C devices                |
+166137|Info:    ------------------------------------------------------
+166689|Info:    ------------------------------------------------------
+166689|Info:    |               Detecting I2C PCI devices            |
+166689|Info:    ------------------------------------------------------
+166690|Info:    ------------------------------------------------------
+166690|Info:    |               Detecting HID devices                |
+166690|Info:    ------------------------------------------------------
+166690|Info:    [Keychron Gaming Keyboard 1] Registering RGB controller
+167759|Info:    [Corsair Harpoon RGB PRO] Registering RGB controller
+167759|Info:    ------------------------------------------------------
+167759|Info:    |            Detecting libusb HID devices            |
+167759|Info:    ------------------------------------------------------
+167873|Info:    ------------------------------------------------------
+167873|Info:    |              Detecting other devices               |
+167873|Info:    ------------------------------------------------------
+167875|Info:    ------------------------------------------------------
+167875|Info:    |                Detection completed                 |
+167875|Info:    ------------------------------------------------------
+167875|Dialog:  <h2>WARNING:</h2><p>One or more I2C/SMBus interfaces failed to initialize.</p><p>RGB DRAM modules and some motherboards' onboard RGB lighting will not be available without I2C/SMBus.</p><p>On Linux, this is usually because the i2c-dev module is not loaded.  You must load the i2c-dev module along with the correct i2c driver for your motherboard.  This is usually i2c-piix4 for AMD systems and i2c-i801 for Intel systems.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p>

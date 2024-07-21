@@ -1,0 +1,199 @@
+;;;; COMMANDS ;;;;
+
+(defvar launcher_cmd  "rofi -show drun -hover-select -me-select-entry '' -me-accept-entry 'MousePrimary' &")
+(defvar bluetooth_cmd "blueberry &")
+(defvar volume_cmd    "pavucontrol &")
+(defvar power_cmd     "./scripts/powermenu &")
+(deflisten workspace "scripts/workspace")
+
+;;;; BAR WIDGETS ;;;;
+
+;; bar widget
+(defwidget bar-widget []
+  (centerbox :orientation "h"
+    (box :class "start"
+      :halign "start"
+      (start))
+    (box :halign "center"
+      :class "center"
+      (center))
+    (box :halign "end"
+      :class "end"
+      (end))))
+
+;; left layout
+(defwidget start []
+  (box :orientation "h"
+    :space-evenly false
+    :spacing "8"
+    (launcher)(workspaces)))
+
+;; middle layout
+(defwidget center []
+  (box :orientation "h"
+    :space-evenly false
+    :spacing "8"
+    (clock)(date)))
+
+;; right layout
+(defwidget end []
+  (box :orientation "h"
+    :space-evenly false
+    :spacing "8"
+    (systemtray)(powermenu)))
+
+;;;; LEFT ;;;;
+
+;; launcher
+(defwidget launcher []
+  (button :class "launcher-icon metric"
+    :tooltip "Rofi launcher"
+  :onclick launcher_cmd  ""))
+
+;; music
+(defwidget music []
+  (box :class "metric"
+    :orientation "h"
+    :space-evenly false
+    :spacing "0"
+    (music-prev)(music-playpause)(music-skip)))
+
+(defwidget music-playpause []
+  (button :class "playpause-icon"
+    :onclick "playerctl play-pause -i chromium"
+    :tooltip "Toggle track"
+  {music-status == "Playing" ? "" : ""}))
+
+(defpoll music-status :interval "1s" "playerctl -p %any -i chromium status")
+
+(defwidget music-skip []
+  (button :class "skip-icon"
+    :onclick "playerctl next -i chromium"
+    :tooltip "Skip track"
+  ""))
+
+(defwidget music-prev []
+  (button :class "prev-icon"
+    :onclick "playerctl previous -i chromium"
+    :tooltip "Previous track"
+  ""))
+
+;; workspaces
+(defwidget workspaces []
+  (box :class "metric"
+    :orientation "h"
+    :space-evenly false
+    :spacing "0"
+    (literal :content workspace)))
+
+
+;;;; CENTER ;;;;
+
+;; clock
+(defwidget clock []
+  (box :class "metric time-clock"
+    (box :orientation "h"
+      :halign "center"
+      (label :text hour :class "hour")
+      (label :text minute :class "minute"))))
+
+(defpoll hour :interval "1s" "date +%H")
+(defpoll minute :interval "1s" "date +%M")
+
+;; date
+(defwidget date []
+  (box :class "metric date-clock"
+    (box :orientation "h"
+      :halign "center"
+      (label :text day :class "day")
+      (label :text month :class "month")
+      (label :text year :class "year"))))
+
+(defpoll day :interval "1s" "date +%d")
+(defpoll month :interval "1s" "date +%m")
+(defpoll year :interval "1s" "date +%y")
+
+
+;;;; RIGHT (sus) ;;;;
+
+;; systemtray
+(defwidget systemtray []
+  (box :class "metric"
+    :orientation "h"
+    :space-evenly false
+    :spacing "0"
+    
+    (memory)(bluetooth)(mic)(volume)))
+
+
+;; memory
+(defwidget memory []
+  (button :class "memory-icon"
+    :tooltip "Memory used: ${memory_percent}%"
+    :visible "${memory_percent > 85 ? "true" : "false"}"
+  ""))
+
+(defpoll memory_percent :interval "1s" "free -m | grep Mem | awk '{print ($3/$2)*100}' | cut -d'.' -f1")
+
+
+;; bluetooth
+(defwidget bluetooth []
+  (button :class "bluetooth-icon ${bluetooth_status == "1" ? "bluetooth-on" : bluetooth_status == "2" ? "bluetooth-connected" : "bluetooth-off"}"
+    :onclick bluetooth_cmd
+    :tooltip "Bluetooth"
+  ""))
+
+(defpoll bluetooth_status :interval "1s" "./scripts/bluetooth")
+
+
+;; mic
+(defwidget mic []
+  (button :class "mic-icon ${mic_status == "no" ? "mic-on" : "mic-off"}"
+    :onclick "pactl set-source-mute @DEFAULT_SOURCE@ toggle"
+    :tooltip "Microphone"
+  ""))
+
+(defpoll mic_status :interval "0s" "pactl list sources | grep -m 1 Mute | tail -n 1 | awk '{print $2}'")
+
+
+;; volume
+(defwidget volume []
+  (eventbox :onhover "eww update volume_reveal=true"
+    :onhoverlost "eww update volume_reveal=false"
+    (box :orientation "h"
+      :space-evenly false
+      (revealer :transition "slideleft"
+        :reveal volume_reveal
+        :duration "621ms"
+        (scale :class "volume-slider"
+          :value current_volume
+          :tooltip "Volume: ${current_volume}%"
+          :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+          :orientation "h"
+          :flipped true
+          :max 101
+        :min 0))
+      (button :class "volume-icon"
+        :onclick volume_cmd
+      {current_volume == 0 ? "" : ""}))))
+
+(defpoll current_volume :interval "0s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defvar volume_reveal false)
+
+
+;; powermenu
+(defwidget powermenu []
+  (button :class "poweroff-icon metric"
+    :onclick power_cmd
+  ""))
+
+
+;;;; WINDOWS ;;;;
+
+;; bar
+(defwindow bar
+  :stacking "bg"
+  :monitor 0
+  :geometry (geometry :x 0 :y 10 :width "1900px" :height "30px" :anchor "top center")
+  
+  :reserve (struts :distance "60px" :side "top") (bar-widget))
