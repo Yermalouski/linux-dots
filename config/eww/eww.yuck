@@ -1,15 +1,20 @@
-;;;; COMMANDS ;;;;
+; ------------------------------------------------------------------------------------------
+; ---------------------------------------- COMMANDS ----------------------------------------
+; ------------------------------------------------------------------------------------------
 
 (defvar launcher_cmd  "rofi -show drun -hover-select -me-select-entry '' -me-accept-entry 'MousePrimary' &")
 (defvar bluetooth_cmd "blueberry &")
 (defvar volume_cmd    "pavucontrol &")
+(defvar vpn_cmd       "./scripts/vpn toggle &")
 (defvar power_cmd     "./scripts/powermenu &")
 (deflisten workspace "scripts/workspace")
 
-;;;; BAR WIDGETS ;;;;
 
-;; bar widget
-(defwidget bar-widget []
+; ------------------------------------------------------------------------------------------
+; ------------------------------------------ BAR -------------------------------------------
+; ------------------------------------------------------------------------------------------
+
+(defwidget bar-widget []                                                        ; Bar
   (centerbox :orientation "h"
     (box :class "start"
       :halign "start"
@@ -21,36 +26,35 @@
       :class "end"
       (end))))
 
-;; left layout
-(defwidget start []
+(defwidget start []                                                             ; Left Widgets
   (box :orientation "h"
     :space-evenly false
     :spacing "8"
-    (launcher)(workspaces)))
+    (launcher)(workspaces)(music)))
 
-;; middle layout
-(defwidget center []
+(defwidget center []                                                            ; Center Widgets
   (box :orientation "h"
     :space-evenly false
     :spacing "8"
     (clock)(date)))
 
-;; right layout
-(defwidget end []
+(defwidget end []                                                               ; Right Widgets
   (box :orientation "h"
     :space-evenly false
     :spacing "8"
     (systemtray)(powermenu)))
 
-;;;; LEFT ;;;;
 
-;; launcher
-(defwidget launcher []
+; ------------------------------------------------------------------------------------------
+; ---------------------------------------- WIDGETS -----------------------------------------
+; ------------------------------------------------------------------------------------------
+
+(defwidget launcher []                                                          ; App Menu
   (button :class "launcher-icon metric"
     :tooltip "Rofi launcher"
   :onclick launcher_cmd  ""))
 
-;; music
+;; music                                                                        ; Music Container
 (defwidget music []
   (box :class "metric"
     :orientation "h"
@@ -58,27 +62,27 @@
     :spacing "0"
     (music-prev)(music-playpause)(music-skip)))
 
-(defwidget music-playpause []
+(defwidget music-playpause []                                                   ; Play
   (button :class "playpause-icon"
-    :onclick "playerctl play-pause -i chromium"
+    :onclick "playerctl play-pause -i spotify"
     :tooltip "Toggle track"
   {music-status == "Playing" ? "" : ""}))
 
-(defpoll music-status :interval "1s" "playerctl -p %any -i chromium status")
+(defpoll music-status :interval "1s" "playerctl -p %any -i spotify status")
 
-(defwidget music-skip []
+(defwidget music-skip []                                                        ; Skip
   (button :class "skip-icon"
-    :onclick "playerctl next -i chromium"
+    :onclick "playerctl next -i spotify"
     :tooltip "Skip track"
   ""))
 
-(defwidget music-prev []
+(defwidget music-prev []                                                        ; Previous
   (button :class "prev-icon"
-    :onclick "playerctl previous -i chromium"
+    :onclick "playerctl previous -i spotify"
     :tooltip "Previous track"
   ""))
 
-;; workspaces
+;; workspaces                                                                   ; Workspaces
 (defwidget workspaces []
   (box :class "metric"
     :orientation "h"
@@ -86,35 +90,21 @@
     :spacing "0"
     (literal :content workspace)))
 
-
-;;;; CENTER ;;;;
-
-;; clock
-(defwidget clock []
+(defwidget clock []                                                             ; Clock
   (box :class "metric time-clock"
     (box :orientation "h"
       :halign "center"
-      (label :text hour :class "hour")
-      (label :text minute :class "minute"))))
+      (label :text time :class "time"))))
 
-(defpoll hour :interval "1s" "date +%H")
-(defpoll minute :interval "1s" "date +%M")
+(defpoll time :interval "10s" "date '+%H:%M'")
 
-;; date
-(defwidget date []
+(defwidget date []                                                              ; Date
   (box :class "metric date-clock"
     (box :orientation "h"
       :halign "center"
-      (label :text day :class "day")
-      (label :text month :class "month")
-      (label :text year :class "year"))))
+      (label :text date :class "date"))))
 
-(defpoll day :interval "1s" "date +%d")
-(defpoll month :interval "1s" "date +%m")
-(defpoll year :interval "1s" "date +%y")
-
-
-;;;; RIGHT (sus) ;;;;
+(defpoll date :interval "10s" "date '+%d.%m.%y'")
 
 ;; systemtray
 (defwidget systemtray []
@@ -122,8 +112,8 @@
     :orientation "h"
     :space-evenly false
     :spacing "0"
-    
-    (memory)(bluetooth)(mic)(volume)))
+
+    (memory)(bluetooth)(mic)(brightness)(volume)))
 
 
 ;; memory
@@ -131,7 +121,7 @@
   (button :class "memory-icon"
     :tooltip "Memory used: ${memory_percent}%"
     :visible "${memory_percent > 85 ? "true" : "false"}"
-  ""))
+  ""))
 
 (defpoll memory_percent :interval "1s" "free -m | grep Mem | awk '{print ($3/$2)*100}' | cut -d'.' -f1")
 
@@ -143,7 +133,7 @@
     :tooltip "Bluetooth"
   ""))
 
-(defpoll bluetooth_status :interval "1s" "./scripts/bluetooth")
+(defpoll bluetooth_status :interval "5s" "./scripts/bluetooth")
 
 
 ;; mic
@@ -153,7 +143,16 @@
     :tooltip "Microphone"
   ""))
 
-(defpoll mic_status :interval "0s" "pactl list sources | grep -m 1 Mute | tail -n 1 | awk '{print $2}'")
+(defpoll mic_status :interval "5s" "pactl list sources | grep -m 1 Mute | tail -n 1 | awk '{print $2}'")
+
+;; vpn
+(defwidget vpn []
+  (button :class "vpn-icon ${vpn_status == "1" ? "vpn-on" : "vpn-off"}"
+    :onclick vpn_cmd
+    :tooltip "VPN"
+  ""))
+
+(defpoll vpn_status :interval "5s" "./scripts/vpn status")
 
 
 ;; volume
@@ -177,8 +176,38 @@
         :onclick volume_cmd
       {current_volume == 0 ? "" : ""}))))
 
-(defpoll current_volume :interval "0s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
+(defpoll current_volume :interval "1s" "amixer -D pulse sget Master | grep 'Left:' | awk -F'[][]' '{ print $2 }' | tr -d '%'")
 (defvar volume_reveal false)
+
+
+;; brightness
+(defwidget brightness []
+  (eventbox :onhover "eww update br_reveal=true"
+    :onhoverlost "eww update br_reveal=false"
+    (box :orientation "h"
+      :space-evenly false
+      (revealer :transition "slideleft"
+        :reveal br_reveal
+        :duration "621ms"
+        (scale :class "brightness-slider"
+          :value brightness_percent
+          :tooltip "Brightness: ${brightness_percent}%"
+          :onchange "   if [ {} -lt 20 ]; then
+          xrandr --output DP-4 --brightness 0.20
+          brightness_percent=10   # Ensure slider reflects the actual brightness
+          else
+          xrandr --output DP-4 --brightness $(echo \"scale=2; {}/100\" | bc)
+          brightness_percent={}   # Update slider to reflect the new brightness
+          fi"
+          :orientation "h"
+          :flipped true
+          :max 101
+        :min 0))
+      (button :class "brightness-icon"
+      {brightness_percent == 0 ? "" : ""}))))
+
+(defpoll brightness_percent :interval "1s" "xrandr --verbose | grep -i brightness | awk -F': ' '{print $2*100}'")
+(defvar br_reveal false)
 
 
 ;; powermenu
@@ -188,12 +217,12 @@
   ""))
 
 
-;;;; WINDOWS ;;;;
+; ------------------------------------------------------------------------------------------
+; ---------------------------------------- WINDOW ------------------------------------------
+; ------------------------------------------------------------------------------------------
 
-;; bar
 (defwindow bar
   :stacking "bg"
   :monitor 0
   :geometry (geometry :x 0 :y 10 :width "1900px" :height "30px" :anchor "top center")
-  
   :reserve (struts :distance "60px" :side "top") (bar-widget))

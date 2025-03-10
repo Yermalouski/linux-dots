@@ -1,8 +1,7 @@
 /*         PARADISE THEME         */
-/*    config for fluffys dots     */
 
 * {
-    bg:     #101010;
+    bg:     #202020;
     bg-alt: #151515;
     fg:     #E8E3E3;
     fg-alt: #666;

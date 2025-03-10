@@ -7,12 +7,12 @@ super + Return
 	alacritty
 
 # Menu
-super + @space
+super + space
 	rofi -show drun
 
-# Chromium
+# browser
 super + b
-	chromium
+	zen-browser
 
 # Spotify
 super + s
@@ -22,14 +22,16 @@ super + s
 super + n
 	nautilus
 
-# Visual Studio Code
-super + v
-	code
+# Discord
+super + d
+	discord
 
 # SXHKD Reload
 super + Escape
 	pkill -USR1 -x sxhkd
 
+Print
+    /home/yermalouski/.config/rofi/screenshot.sh
 
 
 # ----------------------------------------------------------------
@@ -38,11 +40,11 @@ super + Escape
 
 #Raise Volume
 XF86AudioRaiseVolume
-    pactl set-sink-volume 0 +5%
+    pactl set-sink-volume 0 +1%
 
 #lower Volume
 XF86AudioLowerVolume
-    pactl set-sink-volume 0 -5%
+    pactl set-sink-volume 0 -1%
 
 #Mute Volume
 XF86AudioMute
@@ -55,8 +57,8 @@ XF86AudioMute
 # -----------------------------------------------------------------
 
 # Quit BSPWM
-super + shift + Escape
-	bspc {quit,wm -r}
+super + shift + Delete
+	bspc quit
 
 # Close Window
 super + q
@@ -71,30 +73,36 @@ super + shift + f
 	bspc node -t \~fullscreen
 
 # Floating Window
-super + p
-	bspc node -t floating
+# super + p
+#	bspc node -t floating
+
+
 
 # -----------------------------------------------------------------
 # ----------------------------- FOCUS -----------------------------
 # -----------------------------------------------------------------
 
-# Shift Window Focus & Set Main Window
+# Shift Window Focus
 super + Tab
-	bspc node --focus next.local && bspc node -s biggest.window
-
-# Shift Window Focus Only
-super + shift + Tab
 	bspc node -f {next,prev}.local.!hidden.window
 
+# Preselect Next Window Position
+super + {Left,Down,Up,Right}
+    bspc node --presel-dir {west,south,north,east}
+
+# Cancel Next Window Position
+super + BackSpace
+	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
+
 # Move Focused Window Left, Down, Up, Right
-super + {_,shift + }{Left,Down,Up,Right}
-	bspc node -{f,s} {west,south,north,east}
+super + shift + {Left,Down,Up,Right}
+	bspc node -s {west,south,north,east}
 
 # Workspace Focus
 super + bracket{left,right}
 	bspc desktop -f {prev,next}.local
 
-# Send Focused Window to other Desktops
+# Send Focused Window to other Workspace
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}'
 
@@ -104,54 +112,33 @@ super + {_,shift + }{1-9,0}
 # --------------------------- RESIZING ---------------------------
 # ----------------------------------------------------------------
 
-# Expand Window Out
-super + alt + {h,j,k,l}
-	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+# Expand Window Horizontally (Mouse Wheel Up)
+super + button4
+    bspc node -f && bspc node -z left 10 0 && bspc node -z right 10 0
 
-# Contract Window In
-super + alt + shift + {h,j,k,l}
-	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+# Contract Window Horizontally (Mouse Wheel Down)
+super + button5
+    bspc node -f && bspc node -z left -10 0 && bspc node -z right -10 0
+
+# Expand Window Vertically (Page Up)
+super + Page_Up
+    bspc node -f && bspc node -z top 0 -10 && bspc node -z bottom 0 -10
+
+# Contract Window Vertically (Page Down)
+super + Page_Down
+    bspc node -f && bspc node -z top 0 10 && bspc node -z bottom 0 10
 
 # Move Floating Window
-super + {Left,Down,Up,Right}
-	bspc node -v {-20 0,0 20,0 -20,20 0}
+# super + {_,shift + }{Left,Down,Up,Right}
+#	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 
 
 # -----------------------------------------------------------------
-# ----------------------------- NODES -----------------------------
+# ---------------------------- MARKING ----------------------------
 # -----------------------------------------------------------------
+
 
 # Set Node Flags
 # super + ctrl + {m,x,y,z}
 # 	bspc node -g {marked,locked,sticky,private}
-
-# Send Newest Marked Node to Newest Preselected Node
-# super + y
-# 	bspc node newest.marked.local -n newest.!automatic.local
-
-# Focus Node for Path Jump
-# super + {p,b,comma,period}
-# 	bspc node -f @{parent,brother,first,second}
-
-
-
-# ----------------------------------------------------------------
-# ------------------------- PRESELECTION -------------------------
-# ----------------------------------------------------------------
-
-# Preselect Direction
-# super + ctrl + {h,j,k,l}
-# 	bspc node -p {west,south,north,east}
-
-# Preselect Ratio
-# super + ctrl + {1-9}
-# 	bspc node -o 0.{1-9}
-
-# Cancel Preselection of Focused Node
-# super + ctrl + space
-# 	bspc node -p cancel
-
-# cancel Preselection of Docused Desktop
-# super + ctrl + shift + space
-# 	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel

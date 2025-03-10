@@ -1,15 +1,15 @@
 #! /bin/sh
 
-# Monitor Settings
+# ---------------------------------------- Monitor Settings ---------------------------------------- #
 
-bspc monitor -d 1 2 3 4                                                 # Monitor and Workspaces
-xrandr --output DP-4 --mode 1920x1080 --rate 144                        # Resolution and Refresh Rate
+xrandr --output DP-4 --mode 1920x1080 --rate 144 --primary              # Monitor Settings
+xrandr --output HDMI-0 --off                                            # TV Settings
+bspc monitor DP-4 -d 1 2 3 4                                            # Defining Workspaces
 
 
-
-# Window Settings
-
-bspc config split_ratio             0.55                                # Main Window Ratio
+# ----------------------------------------- Window Settings ----------------------------------------- #
+bspc config split_ratio             0.5                                 # Main Window Ratio
+bspc config automatic_scheme        even                                # Splitting Behaviour
 
 bspc config borderless_monocle      true                                # Enable Window Borders
 bspc config border_width            0                                   # Window Border Size
@@ -17,16 +17,19 @@ bspc config border_width            0                                   # Window
 bspc config gapless_monocle         false                               # Enable Window Gaps
 bspc config window_gap              10                                  # Window Gap Size
 
-bspc config pointer_motion_interval 7ms                                 # Pointer Refresh Interval
+bspc config pointer_motion_interval 5ms                                 # Pointer Refresh Interval
+bspc config focus_follows_pointer   true                                # Focus Follows Mouse
+
+bspc config focused_window_opacity  1                                   # Focused Window Opacity
+bspc config normal_window_opacity   0.9                                 # Unfocused Window Opacity
 
 
-
-# Auto start applications
-
-openrgb -p White.orp &                                                  # RGB Preset
-sxhkd &                                                                 # Keybinds
+# ------------------------------------------ Applications ------------------------------------------ #
+sudo openrgb -p Off.orp &                                               # RGB
+sudo openvpn --config ~/.ssh/profiles/client.ovpn &                     # VPN
 xsetroot -cursor_name left_ptr &                                        # Cursor
-picom --config $HOME/.config/picom/picom.conf &                         # Compositer
+picom --config $HOME/.config/picom/picom.conf --animations &            # Compositor
+sxhkd &                                                                 # Keybinds
 nitrogen --restore &                                                    # Wallpaper
 dunst &                                                                 # Notifications
 eww open bar &                                                          # Bar

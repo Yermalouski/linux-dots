@@ -1,269 +1,263 @@
-// colors
-$fg: #e8e3e3;
-$bg: #101010;
+// ---------------------------- COLOUR ----------------------------
 
-$black: #171717;
-$dark: #1a1a1a;
-$gray: #424242;
+$orchis-gray-dark: #3a3a3a;
+$muted-orchid-gray: #4c4c4c;
+$deep-slate-gray: #2e2e2e;
+$ashen-orchid: #585858;
+$charcoal-orchid: #383838;
+
 $white: #e8e3e3;
 $red: #b66467;
-$yellow: #d9bc8c;
-$green: #8c977d;
 $cyan: #8aa6a2;
-$blue: #8da3b9;
-$magenta: #a988b0;
 
-$radius: 2px;
+
+// ---------------------------- SIZING ----------------------------
+
 $icon-size: 14px;
 $font-size: 12px;
-
 $icon-font: "Feather";
 
-// widgets
+
+// ---------------------------- WIDGET ----------------------------
+
 * {
   all: unset;
 }
 
-// windows
+
+// ---------------------------- WINDOW ----------------------------
+
 window {
-	background: $bg;
-	color: $fg;
-	font-size: $font-size;
-	font-family: "JetBrainsMono NerdFont Mono";
-	font-weight: 400;
-
-	& > * {
-		margin: 8px;
-	}
+  background: $deep-slate-gray;
+  font-size: $font-size;
+  font-family: "JetBrainsMono NerdFont Mono";
+  font-weight: 500;
+  border-radius: 4px;
+  margin: 8px 0 8px 0;
 }
 
-// sliders
+// ---------------------------- SLIDER ----------------------------
+
 scale trough {
-	all: unset;
-	background-color: $bg;
-	border-radius: $radius;
-	min-height: 10px;
-	min-width: 100px;
-	margin: 3px 10px 0px;
+  background-color: $deep-slate-gray;
+  border-radius: 4px;
+  min-height: 10px;
+  min-width: 100px;
+  margin: 3px 0 0 0;
 }
 
-// bubbles
+
+// ---------------------------- BUBBLE ----------------------------
+
 .metric {
-	padding: 0px;
-
-	min-height: 20px;
-	
-	background-color: $black;
-	border-radius: $radius;
+  background-color: $orchis-gray-dark;
+  border-radius: 4px;
+  margin: 8px 0 8px 0;
 }
 
-// icons
+
+// ---------------------------- ICONS -----------------------------
+
 @mixin icon {
-	padding: 8px 10px;
-
-	font-family: $icon-font;
-	font-size: $icon-size;
-
-	border-radius: $radius;
-
-	transition: all 0.2s;
+  padding: 8px 10px;
+  font-family: $icon-font;
+  font-size: $icon-size;
+  transition: all 0.2s;
 }
 
-//
-// LEFT WIDGETS
-//
 
-// launcher
+// -------------------------- LEFT WIDGETS --------------------------
 .launcher-icon {
-	padding: 4px 6px 6px 6px;
+  padding: 4px 6px 6px 6px;
+  margin: 8px 0 8px 8px;
+  color: $orchis-gray-dark;
+  background-color: $white;
+  border-top: 2px solid $white;
+  border-radius: 4px;
+  font-family: $icon-font;
+  font-size: $icon-size;
+  transition: all 0.2s;
 
-	color: $bg;
-	background-color: $white;
-	border-top: 2px solid $white;
-
-	font-family: $icon-font;
-	font-size: $icon-size;
-
-	transition: all 0.2s;
-
-	&:hover {
-		color: $white;
-		background-color: $black;
-	}
+  &:hover {
+    color: $white;
+    background-color: $orchis-gray-dark;
+  }
 }
 
 .playpause-icon {
-	padding: 9px 6px 9px 4px;
+  padding: 9px 6px 9px 4px;
+  font-family: $icon-font;
+  font-size: $icon-size;
+  transition: color 0.2s, background-color 0.2s, border 0.2s;
+  color: $white;
+  border-left: 2px solid $orchis-gray-dark;
+  border-radius: 4px;
 
-	font-family: $icon-font;
-	font-size: $icon-size;
-	transition: color 0.2s, background-color 0.2s, border 0.2s;
-
-	color: $fg;
-	border-left: 2px solid $black;
-	border-radius: $radius;
-
-	&:hover {
-		background-color: $black;
-		color: $white;
-	}
+  &:hover {
+    background-color: $orchis-gray-dark;
+    color: $cyan;
+  }
 }
+
 .music-playing {
-	padding: 9px 6px;
+  padding: 9px 6px;
+  background-color: $white;
+  color: $orchis-gray-dark;
+  border-left: 2px solid $white;
 
-	background-color: $white;
-	color: $bg;
-	border-left: 2px solid $white;
-
-	&:hover {
-		background-color: $black;
-	}
+  &:hover {
+    background-color: $orchis-gray-dark;
+  }
 }
 
-.skip-icon {
-	@include icon;
+.skip-icon, .prev-icon {
+  @include icon;
 
-	&:hover {
-		color: $white;
-	}
+  &:hover {
+    color: $cyan;
+  }
 }
 
-.prev-icon {
-	@include icon;
-
-	&:hover {
-		color: $white;
-	}
+/* Unoccupied */
+.ws,
+.ws1,
+.ws2,
+.ws3,
+.ws4,
+.ws11,
+.ws22,
+.ws33,
+.ws44 {
+  @include icon;
+  
+  &:hover {
+    color: $cyan;
+  }
 }
 
-.workspace {
-	background-color: $black;
-	border-radius: $radius;
-	}
-
-	/* Unoccupied */
-	.ws, .ws1, .ws2, .ws3, .ws4,
-	.ws11, .ws22, .ws33, .ws44 {
-		@include icon;
-		&:hover {
-			color: $cyan;
-		}
-	}
-
-	.ws {
-		color: $gray;
-	}
-	
-	/* Occupied */
-	.ws1, .ws2, .ws3, .ws4 {
-	  color: $white;
-	}
-	
-	/* Focused */
-	._ws11, .ws22, .ws33, .ws44 {
-	  color: $white;
-	}
-
-//
-// CENTER WIDGETS
-//
-
-.time-clock {
-	color: $white;
-	background-color: $black;
-	padding: 0 4px 0 4px;
+.ws {
+  color: $ashen-orchid;
 }
 
-.date-clock {
-	color: $fg;
-	background-color: $black;
-	padding: 0 4px 0 4px;
+/* Occupied */
+.ws1,
+.ws2,
+.ws3,
+.ws4 {
+  color: $white;
 }
 
-.hour {
-	color: $white;
-	padding: 2px;
+/* Focused */
+.ws11,
+.ws22,
+.ws33,
+.ws44 {
+  color: $white;
 }
 
-.day {
-	color: $white;
-	padding: 2px;
+
+// ---------------------------- CENTER WIDGETS ----------------------------
+
+.time-clock, .date-clock {
+  color: $white;
+  background-color: $orchis-gray-dark;
+  padding: 0 8px 0 8px;
+  border-radius: 4px;
 }
 
-//
-// RIGHT (sus) WIDGETS
-//
+.hour, .day {
+  color: $white;
+}
+
+
+// ---------------------------- RIGHT WIDGETS ----------------------------
 
 .memory-icon {
-	@include icon;
-	padding: 9px 6px 9px 4px;
+  @include icon;
+  padding: 9px 6px 9px 4px;
+  background-color: $red;
+  color: $orchis-gray-dark;
+  border-left: 2px solid $red;
+  border-radius: 4px;
 
-	background-color: $red;
-	color: $bg;
-	border-left: 2px solid $red;
-	border-radius: $radius;
-
-	&:hover {
-		color: $red;
-		background-color: $black;
-	}
+  &:hover {
+    color: $red;
+    background-color: $orchis-gray-dark;
+  }
 }
 
 .bluetooth-icon {
-	@include icon;
-	color: $gray;
+  @include icon;
+  color: $white;
 
-	&:hover {
-		color: $cyan;
-	}
+  &:hover {
+    color: $cyan;
+  }
 }
 
 .bluetooth-on {
-	color: $red;
+  color: $red;
 }
+
 .bluetooth-connected {
-	color: $white;
+  color: $white;
+}
+
+.vpn-icon {
+  @include icon;
+  color: $ashen-orchid;
+
+  &:hover {
+    color: $cyan;
+  }
+}
+
+.vpn-on {
+  color: $red;
+}
+
+.vpn-connected {
+  color: $white;
 }
 
 .mic-icon {
-	@include icon;
-	color: $gray;
+  @include icon;
+  color: $red;
 
-	&:hover {
-		color: $cyan;
-	}
+  &:hover {
+    color: $cyan;
+  }
 }
+
 .mic-on {
-	color: $white;
+  color: $white;
 }
 
+.brightness-icon, .volume-icon {
+  @include icon;
 
-.volume-icon {
-	@include icon;
-
-	&:hover {
-		color: $cyan;
-	}
+  &:hover {
+    color: $cyan;
+  }
 }
-.volume-slider trough highlight {
-	background-color: $white;
-	border-radius: $radius;
+
+.brightness-slider trough highlight, .volume-slider trough highlight {
+  background-color: $white;
+  border-radius: 4px;
 }
 
 .poweroff-icon {
-	padding: 4px 6px 6px 6px;
+  padding: 4px 6px 6px 6px;
+  margin: 8px 8px 8px 0;
+  color: $orchis-gray-dark;
+  background-color: $white;
+  border-top: 2px solid $white;
+  font-family: $icon-font;
+  font-size: $icon-size;
+  transition: all 0.2s;
 
-	color: $bg;
-	background-color: $white;
-
-	border-top: 2px solid $white;
-
-	font-family: $icon-font;
-	font-size: $icon-size;
-	transition: all 0.2s;
-
-	&:hover {
-		color: $white;
-		background-color: $black;
-	}
+  &:hover {
+    color: $white;
+    background-color: $orchis-gray-dark;
+  }
 }
