@@ -7,7 +7,6 @@
 (defvar volume_cmd    "pavucontrol &")
 (defvar vpn_cmd       "./scripts/vpn toggle &")
 (defvar power_cmd     "./scripts/powermenu &")
-(deflisten workspace "scripts/workspace")
 
 
 ; ------------------------------------------------------------------------------------------
@@ -30,7 +29,7 @@
   (box :orientation "h"
     :space-evenly false
     :spacing "8"
-    (launcher)(workspaces)(music)))
+    (launcher)(workspace)(music)))
 
 (defwidget center []                                                            ; Center Widgets
   (box :orientation "h"
@@ -42,7 +41,7 @@
   (box :orientation "h"
     :space-evenly false
     :spacing "8"
-    (systemtray)(powermenu)))
+    (battery)(systemtray)(powermenu)))
 
 
 ; ------------------------------------------------------------------------------------------
@@ -52,7 +51,21 @@
 (defwidget launcher []                                                          ; App Menu
   (button :class "launcher-icon metric"
     :tooltip "Rofi launcher"
-  :onclick launcher_cmd  ""))
+  :onclick launcher_cmd  ""))
+
+;; workspaces
+
+(defwidget workspace[]
+  (box :class "metric workspace"
+       :space-evenly false
+  (label :class "workspace-icon"
+       :text "")
+  (label :class "workspace-text"
+       :text "${workspace}"
+       :halign "center")))
+
+(defpoll workspace :interval "0.5s" :initial "1"
+  "bash ~/.config/eww/scripts/workspace.sh")
 
 ;; music                                                                        ; Music Container
 (defwidget music []
@@ -64,31 +77,23 @@
 
 (defwidget music-playpause []                                                   ; Play
   (button :class "playpause-icon"
-    :onclick "playerctl play-pause -i spotify"
+    :onclick "playerctl play-pause -p spotify"
     :tooltip "Toggle track"
-  {music-status == "Playing" ? "" : ""}))
-
-(defpoll music-status :interval "1s" "playerctl -p %any -i spotify status")
+  {music-status == "Playing" ? "" : ""}))
 
 (defwidget music-skip []                                                        ; Skip
   (button :class "skip-icon"
-    :onclick "playerctl next -i spotify"
+    :onclick "playerctl next -p spotify"
     :tooltip "Skip track"
   ""))
 
 (defwidget music-prev []                                                        ; Previous
   (button :class "prev-icon"
-    :onclick "playerctl previous -i spotify"
+    :onclick "playerctl previous -p spotify"
     :tooltip "Previous track"
   ""))
 
-;; workspaces                                                                   ; Workspaces
-(defwidget workspaces []
-  (box :class "metric"
-    :orientation "h"
-    :space-evenly false
-    :spacing "0"
-    (literal :content workspace)))
+(defpoll music-status :interval "1s" "playerctl -p %any -p spotify status")
 
 (defwidget clock []                                                             ; Clock
   (box :class "metric time-clock"
@@ -115,6 +120,17 @@
 
     (memory)(bluetooth)(mic)(brightness)(volume)))
 
+;; (defwidget battery[]())
+
+;; (defpoll battery :interval "10s" "bash ~/.config/eww/scripts/battery.sh")
+
+(defwidget battery []
+  (box :class "metric battery"
+    :space-evenly false
+    (label :class "battery-icon"
+           :text "")
+    (label :class "battery-text"
+           :text "${EWW_BATTERY["BAT0"].capacity}%" :halign "center")))
 
 ;; memory
 (defwidget memory []
@@ -192,11 +208,12 @@
         (scale :class "brightness-slider"
           :value brightness_percent
           :tooltip "Brightness: ${brightness_percent}%"
-          :onchange "   if [ {} -lt 20 ]; then
-          xrandr --output DP-4 --brightness 0.20
-          brightness_percent=10   # Ensure slider reflects the actual brightness
+          :onchange
+          "if [ {} -lt 20 ]; then
+          xrandr --output eDP-1 --brightness 0.20
+          brightness_percent=20   # Ensure slider reflects the actual brightness
           else
-          xrandr --output DP-4 --brightness $(echo \"scale=2; {}/100\" | bc)
+          xrandr --output eDP-1 --brightness $(echo \"scale=2; {}/100\" | bc)
           brightness_percent={}   # Update slider to reflect the new brightness
           fi"
           :orientation "h"
@@ -214,7 +231,7 @@
 (defwidget powermenu []
   (button :class "poweroff-icon metric"
     :onclick power_cmd
-  ""))
+  ""))
 
 
 ; ------------------------------------------------------------------------------------------

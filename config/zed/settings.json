@@ -7,6 +7,13 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
   "features": {
     "edit_prediction_provider": "zed"
   },
@@ -14,12 +21,12 @@
     "metrics": false,
     "diagnostics": false
   },
-  "vim_mode": true,
+  "vim_mode": false,
   "ui_font_size": 16,
   "buffer_font_size": 16,
   "theme": {
     "mode": "system",
-    "light": "One Light",
+    "light": "Gruvbox Dark Soft",
     "dark": "macOS Classic Dark2"
   }
 }

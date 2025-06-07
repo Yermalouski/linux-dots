@@ -10,254 +10,245 @@ $white: #e8e3e3;
 $red: #b66467;
 $cyan: #8aa6a2;
 
-
 // ---------------------------- SIZING ----------------------------
 
-$icon-size: 14px;
-$font-size: 12px;
+$icon-size: 16px;
+$font-size: 14px;
 $icon-font: "Feather";
-
 
 // ---------------------------- WIDGET ----------------------------
 
 * {
-  all: unset;
+    all: unset;
 }
-
 
 // ---------------------------- WINDOW ----------------------------
 
 window {
-  background: $deep-slate-gray;
-  font-size: $font-size;
-  font-family: "JetBrainsMono NerdFont Mono";
-  font-weight: 500;
-  border-radius: 4px;
-  margin: 8px 0 8px 0;
+    background: $deep-slate-gray;
+    font-size: $font-size;
+    font-family: "JetBrainsMono NerdFont Mono";
+    font-weight: 500;
+    border-radius: 4px;
+    margin: 8px 0 8px 0;
 }
 
 // ---------------------------- SLIDER ----------------------------
 
 scale trough {
-  background-color: $deep-slate-gray;
-  border-radius: 4px;
-  min-height: 10px;
-  min-width: 100px;
-  margin: 3px 0 0 0;
+    background-color: $deep-slate-gray;
+    border-radius: 4px;
+    min-height: 10px;
+    min-width: 100px;
+    margin: 3px 0 0 0;
 }
-
 
 // ---------------------------- BUBBLE ----------------------------
 
 .metric {
-  background-color: $orchis-gray-dark;
-  border-radius: 4px;
-  margin: 8px 0 8px 0;
+    background-color: $orchis-gray-dark;
+    border-radius: 4px;
+    margin: 8px 0 8px 0;
 }
-
 
 // ---------------------------- ICONS -----------------------------
 
 @mixin icon {
-  padding: 8px 10px;
-  font-family: $icon-font;
-  font-size: $icon-size;
-  transition: all 0.2s;
+    padding: 8px 10px;
+    font-family: $icon-font;
+    font-size: $icon-size;
+    transition: all 0.2s;
 }
-
 
 // -------------------------- LEFT WIDGETS --------------------------
 .launcher-icon {
-  padding: 4px 6px 6px 6px;
-  margin: 8px 0 8px 8px;
-  color: $orchis-gray-dark;
-  background-color: $white;
-  border-top: 2px solid $white;
-  border-radius: 4px;
-  font-family: $icon-font;
-  font-size: $icon-size;
-  transition: all 0.2s;
+    padding: 4px 6px 6px 6px;
+    margin: 8px 0 8px 8px;
+    color: $orchis-gray-dark;
+    background-color: $white;
+    border-top: 2px solid $white;
+    border-radius: 4px;
+    font-family: $icon-font;
+    font-size: $icon-size;
+    transition: all 0.2s;
 
-  &:hover {
-    color: $white;
-    background-color: $orchis-gray-dark;
-  }
+    &:hover {
+        color: $white;
+        background-color: $orchis-gray-dark;
+    }
 }
 
 .playpause-icon {
-  padding: 9px 6px 9px 4px;
-  font-family: $icon-font;
-  font-size: $icon-size;
-  transition: color 0.2s, background-color 0.2s, border 0.2s;
-  color: $white;
-  border-left: 2px solid $orchis-gray-dark;
-  border-radius: 4px;
+    padding: 9px 6px 9px 4px;
+    font-family: $icon-font;
+    font-size: $icon-size;
+    transition:
+        color 0.2s,
+        background-color 0.2s,
+        border 0.2s;
+    color: $white;
+    border-left: 2px solid $orchis-gray-dark;
+    border-radius: 4px;
 
-  &:hover {
-    background-color: $orchis-gray-dark;
-    color: $cyan;
-  }
+    &:hover {
+        background-color: $orchis-gray-dark;
+        color: $cyan;
+    }
 }
 
 .music-playing {
-  padding: 9px 6px;
-  background-color: $white;
-  color: $orchis-gray-dark;
-  border-left: 2px solid $white;
+    padding: 9px 6px;
+    background-color: $white;
+    color: $orchis-gray-dark;
+    border-left: 2px solid $white;
 
-  &:hover {
-    background-color: $orchis-gray-dark;
-  }
+    &:hover {
+        background-color: $orchis-gray-dark;
+    }
 }
 
-.skip-icon, .prev-icon {
-  @include icon;
+.skip-icon,
+.prev-icon {
+    @include icon;
 
-  &:hover {
-    color: $cyan;
-  }
+    &:hover {
+        color: $cyan;
+    }
 }
 
-/* Unoccupied */
-.ws,
-.ws1,
-.ws2,
-.ws3,
-.ws4,
-.ws11,
-.ws22,
-.ws33,
-.ws44 {
-  @include icon;
-  
-  &:hover {
-    color: $cyan;
-  }
+.workspace {
+    padding: 0 10px 0 10px;
 }
 
-.ws {
-  color: $ashen-orchid;
+.workspace-icon {
+    font-size: $icon-size;
+    padding: 0 3px 0 3px;
 }
 
-/* Occupied */
-.ws1,
-.ws2,
-.ws3,
-.ws4 {
-  color: $white;
+.workspace-text {
+    font-size: $font-size;
+    padding: 0 3px 0 3px;
 }
-
-/* Focused */
-.ws11,
-.ws22,
-.ws33,
-.ws44 {
-  color: $white;
-}
-
 
 // ---------------------------- CENTER WIDGETS ----------------------------
 
-.time-clock, .date-clock {
-  color: $white;
-  background-color: $orchis-gray-dark;
-  padding: 0 8px 0 8px;
-  border-radius: 4px;
+.time-clock,
+.date-clock {
+    color: $white;
+    background-color: $orchis-gray-dark;
+    padding: 0 8px 0 8px;
+    border-radius: 4px;
 }
 
-.hour, .day {
-  color: $white;
+.hour,
+.day {
+    color: $white;
 }
-
 
 // ---------------------------- RIGHT WIDGETS ----------------------------
 
-.memory-icon {
-  @include icon;
-  padding: 9px 6px 9px 4px;
-  background-color: $red;
-  color: $orchis-gray-dark;
-  border-left: 2px solid $red;
-  border-radius: 4px;
+.battery {
+    padding: 0 10px 0 10px;
+}
 
-  &:hover {
-    color: $red;
-    background-color: $orchis-gray-dark;
-  }
+.battery-icon {
+    font-size: $icon-size;
+    padding: 0 3px 0 3px;
+}
+
+.battery-text {
+    font-size: $font-size;
+    padding: 0 3px 0 3px;
+}
+
+.memory-icon {
+    @include icon;
+    padding: 9px 6px 9px 4px;
+    background-color: $red;
+    color: $orchis-gray-dark;
+    border-left: 2px solid $red;
+    border-radius: 4px;
+
+    &:hover {
+        color: $red;
+        background-color: $orchis-gray-dark;
+    }
 }
 
 .bluetooth-icon {
-  @include icon;
-  color: $white;
+    @include icon;
+    color: $white;
 
-  &:hover {
-    color: $cyan;
-  }
+    &:hover {
+        color: $cyan;
+    }
 }
 
 .bluetooth-on {
-  color: $red;
+    color: $red;
 }
 
 .bluetooth-connected {
-  color: $white;
+    color: $white;
 }
 
 .vpn-icon {
-  @include icon;
-  color: $ashen-orchid;
+    @include icon;
+    color: $ashen-orchid;
 
-  &:hover {
-    color: $cyan;
-  }
+    &:hover {
+        color: $cyan;
+    }
 }
 
 .vpn-on {
-  color: $red;
+    color: $red;
 }
 
 .vpn-connected {
-  color: $white;
+    color: $white;
 }
 
 .mic-icon {
-  @include icon;
-  color: $red;
+    @include icon;
+    color: $red;
 
-  &:hover {
-    color: $cyan;
-  }
+    &:hover {
+        color: $cyan;
+    }
 }
 
 .mic-on {
-  color: $white;
+    color: $white;
 }
 
-.brightness-icon, .volume-icon {
-  @include icon;
+.brightness-icon,
+.volume-icon {
+    @include icon;
 
-  &:hover {
-    color: $cyan;
-  }
+    &:hover {
+        color: $cyan;
+    }
 }
 
-.brightness-slider trough highlight, .volume-slider trough highlight {
-  background-color: $white;
-  border-radius: 4px;
+.brightness-slider trough highlight,
+.volume-slider trough highlight {
+    background-color: $white;
+    border-radius: 4px;
 }
 
 .poweroff-icon {
-  padding: 4px 6px 6px 6px;
-  margin: 8px 8px 8px 0;
-  color: $orchis-gray-dark;
-  background-color: $white;
-  border-top: 2px solid $white;
-  font-family: $icon-font;
-  font-size: $icon-size;
-  transition: all 0.2s;
+    padding: 4px 6px 6px 6px;
+    margin: 8px 8px 8px 0;
+    color: $orchis-gray-dark;
+    background-color: $white;
+    border-top: 2px solid $white;
+    font-family: $icon-font;
+    font-size: $icon-size;
+    transition: all 0.2s;
 
-  &:hover {
-    color: $white;
-    background-color: $orchis-gray-dark;
-  }
+    &:hover {
+        color: $white;
+        background-color: $orchis-gray-dark;
+    }
 }
