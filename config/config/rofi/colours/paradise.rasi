@@ -1,0 +1,17 @@
+/*         PARADISE THEME         */
+
+* {
+    bg:     #202020;
+    bg-alt: #151515;
+    fg:     #E8E3E3;
+    fg-alt: #666;
+    
+    primary:    white;
+    secondary:  gray;
+
+    rad:    3px;
+    rad2:   2px;
+
+    background-color: @bg;
+    text-color:       @fg;
+}

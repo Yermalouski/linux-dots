@@ -1,0 +1,122 @@
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ * 
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
+
+/*****----- Configuration -----*****/
+configuration {
+    show-icons:                 false;
+}
+
+/*****----- Global Properties -----*****/
+@import                          "~/.config/rofi/colours/paradise.rasi"
+@import                          "~/.config/rofi/config.rasi"
+
+/*
+USE_ICON=NO
+*/
+
+/*****----- Main Window -----*****/
+window {
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       400px;
+    height:                      290px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+    margin:                      0px;
+    padding:                     0px;
+    cursor:                      "default";
+    background-color:            transparent;
+}
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     0px;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Prompt -----*****/
+inputbar {
+  margin:           0px;
+  padding:          0.75em;
+
+  children:         [ prompt ];
+
+  border-radius:    @rad;
+  background-color: @bg;
+}
+prompt {
+    enabled:                     true;
+    width: 100%;
+    orientation: horizontal;
+    padding:                     0px;
+    background-color:            @bg;
+    text-color:                  @fg;
+}
+
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     1;
+    lines:                       6;
+    cycle:                       true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    
+    spacing:                     0px;
+    padding:                     6px;
+    background-color:            @bg;
+    cursor:                      "default";
+}
+
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @primary;
+    background-color:            transparent;
+    text-color:                  @fg;
+    cursor:                      pointer;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+}
+
+element normal.normal,
+element alternate.normal {
+    background-color:            var(bg);
+    text-color:                  var(fg);
+}
+element normal.urgent,
+element alternate.urgent,
+element selected.active {
+    background-color:            var(bg);
+    text-color:                  var(fg);
+}
+element normal.active,
+element alternate.active,
+element selected.urgent {
+    background-color:            var(bg-alt);
+    text-color:                  var(fg);
+}
+element selected.normal {
+    background-color:            var(bg-alt);
+    text-color:                  var(fg);
+}
