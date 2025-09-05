@@ -7,16 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "disable_ai": true,
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "ui_font_family": "Ubuntu",
-  "base_keymap": "VSCode",
-  "icon_theme": "Zed (Default)",
-  "agent": {
+  "assistant": {
     "default_model": {
       "provider": "zed.dev",
       "model": "claude-3-5-sonnet-latest"
     },
+    "version": "2"
   },
   "features": {
     "edit_prediction_provider": "zed"
@@ -26,11 +22,11 @@
     "diagnostics": false
   },
   "vim_mode": false,
-  "ui_font_size": 14.0,
-  "buffer_font_size": 14.0,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
   "theme": {
-    "mode": "dark",
-    "light": "One Light",
-    "dark": "Gruvbox Dark Soft"
+    "mode": "system",
+    "light": "Colorizer",
+    "dark": "macOS Classic Dark2"
   }
 }

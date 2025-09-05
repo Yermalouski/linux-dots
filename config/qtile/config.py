@@ -30,13 +30,16 @@ keys = [
     Key([mod], "n", lazy.layout.normalize()),
 
     Key([mod], "Return", lazy.spawn("alacritty")),                                                 # Terminal
-    Key([mod], "b", lazy.spawn("zen-browser")),                                                    # Browser
+    Key([mod], "b", lazy.spawn("firefox")),                                                    # Browser
     Key([mod], "z", lazy.spawn("zeditor")),                                                        # Zed
     Key([mod], "s", lazy.spawn("spotify")),                                                        # Spotify
     Key([mod], "n", lazy.spawn("nautilus")),                                                       # File Explorer
     Key([mod], "Space", lazy.spawn("rofi -show drun")),                                                       # File Explorer
     Key([], "Print", lazy.spawn("sh /home/yermalouski/.config/rofi/screenshot.sh")),                                                       # File Explorer
 
+    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume 0 +5%")),
+    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume 0 -5%")),
+    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute 0 toggle")),
 
     # Split = all windows displayed
     # Unsplit = 1 window displayed, like Max layout, but still with multiple stack panes
@@ -49,21 +52,6 @@ keys = [
     Key([mod, "control"], "q", lazy.shutdown()),                                                   # Exit Qtile
     Key([mod], "r", lazy.spawncmd()),                                                              # Spawn Window
 ]
-
-# ---------------------------------------------------- ??????? ----------------------------------------------------
-
-# Add key bindings to switch VTs in Wayland.
-# We can't check qtile.core.name in default config as it is loaded before qtile is started
-# We therefore defer the check until the key binding is run by using .when(func=...)
-for vt in range(1, 8):
-    keys.append(
-        Key(
-            ["control", "mod1"],
-            f"f{vt}",
-            lazy.core.change_vt(vt).when(func=lambda: qtile.core.name == "wayland"),
-            desc=f"Switch to VT{vt}",
-        )
-    )
 
 
 # -------------------------------------------------- WORKSPACES ---------------------------------------------------
@@ -149,25 +137,20 @@ reconfigure_screens = True
 
 # If things like steam games want to auto-minimize themselves when losing
 # focus, should we respect this or not?
-auto_minimize = True
+auto_minimize = False
 
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
-
-# xcursor theme (string or None) and size (integer) for Wayland backend
-wl_xcursor_theme = None
-wl_xcursor_size = 24
 
 wmname = "Qtile"
 
 @hook.subscribe.startup_once
 def autostart():
-    subprocess.Popen(["eww", "open", "bar"])
+    subprocess.Popen(["xrandr", "--output", "HDMI-0", "--mode", "1920x1080", "--rate", "75", "--primary"])
+    subprocess.Popen(["xrandr", "--output", "DP-4", "--off"])
+    subprocess.Popen(["polybar"])
     subprocess.Popen(["picom"])
     subprocess.Popen(["dunst"])
     subprocess.Popen(["feh", "--bg-scale", "/home/yermalouski/Documents/Wallpapers/wallpaper.jpg"])
-    subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
-    subprocess.Popen(["openvpn", "--config", "/home/yermalouski/.ssh/profiles/client.ovpn"])
-    subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
-
-os.system("xsetroot -cursor_name left_ptr")  # Or change "left_ptr" to your preferred cursor.
+#    subprocess.Popen(["xsetroot", "-cursor_name", "left_ptr"])
+#    subprocess.Popen(["openvpn", "--config", "/home/yermalouski/.ssh/profiles/client.ovpn"])

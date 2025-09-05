@@ -44,7 +44,7 @@ inputbar {
 
 entry {
     padding:            0.75em;
-    placeholder:        "Sniff...";
+    placeholder:        "Search...";
 
     border-radius:      @rad2;
     background-color:   @bg;
@@ -54,7 +54,7 @@ entry {
 
 listview {
     padding:          6px;
-    
+
     layout:           vertical;
     cycle:            false;
     scrollbar:        true;
