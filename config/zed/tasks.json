@@ -1,0 +1,23 @@
+[
+  {
+    "label": "Create Project Files",
+    "command": "touch main.cpp CMakeLists.txt",
+    "cwd": "${workspace_root}",
+    "use_new_terminal": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Configure CMake",
+    "command": "cmake -G Ninja -B build -S .",
+    "cwd": "${workspace_root}",
+    "use_new_terminal": false,
+    "reveal": "always"
+  },
+  {
+    "label": "Build Project",
+    "command": "cmake --build build",
+    "cwd": "${workspace_root}",
+    "use_new_terminal": false,
+    "reveal": "always"
+  }
+]

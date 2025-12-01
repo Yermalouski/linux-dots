@@ -1,0 +1,7 @@
+#!/bin/bash
+
+if ip addr show tun0 | grep -q "172.27.224.74/22"; then
+    echo "ON"
+else
+    echo "OFF"
+fi
